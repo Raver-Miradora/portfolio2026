@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: hsl(250 80% 60%);
+  --color-secondary: hsl(280 70% 60%);
+}
+
+@layer base {
+  body {
+    @apply bg-[#0a0a0a] text-zinc-100;
+  }
+}
+
+/* Custom classes using standard CSS */
+.bg-liquid-glass {
+  border: 1px solid color-mix(in oklab, var(--color-primary) 10%, transparent);
+  background-image: linear-gradient(
+    to bottom right,
+    color-mix(in oklab, var(--color-primary) 10%, transparent),
+    transparent 50%,
+    color-mix(in oklab, var(--color-primary) 15%, transparent)
+  );
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.text-gradient {
+  background-image: linear-gradient(to bottom right, #818cf8, #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.btn-glass {
+  composes: bg-liquid-glass; /* Note: standard CSS doesn't have composes, I'll just repeat the styles or use @apply if I can find the right way */
+}
+
+/* Using @apply for standard tailwind utilities within our custom classes */
+.btn-glass {
+  @apply px-4 py-2 rounded-full hover:scale-105 transition-all duration-300 flex items-center gap-2;
+  border: 1px solid color-mix(in oklab, var(--color-primary) 10%, transparent);
+  background-image: linear-gradient(
+    to bottom right,
+    color-mix(in oklab, var(--color-primary) 10%, transparent),
+    transparent 50%,
+    color-mix(in oklab, var(--color-primary) 15%, transparent)
+  );
+  backdrop-filter: blur(8px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
