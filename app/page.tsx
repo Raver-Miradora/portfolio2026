@@ -1,7 +1,15 @@
+"use client";
+
 import ActionBar from "@/components/ActionBar";
 import MockupCarousel from "@/components/MockupCarousel";
 import { Sparkle, ArrowUpRight, FileText } from "lucide-react";
-import { GitHubCalendar } from "react-github-calendar";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
+
+const GitHubCalendar = dynamic(
+  () => import("react-github-calendar").then((mod) => mod.GitHubCalendar),
+  { ssr: false }
+);
 
 const ProjectSection = ({ title, description, images, stats, links, reverse = false }: any) => (
   <div className={`flex flex-col md:flex-row gap-10 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
@@ -58,6 +66,12 @@ const ProjectSection = ({ title, description, images, stats, links, reverse = fa
 );
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const prismImages = [
     "/Mockups/PRISM-1.png",
     "/Mockups/PRISM-2.png",
@@ -89,7 +103,7 @@ export default function Home() {
   };
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-24 space-y-32">
+    <main className="max-w-4xl mx-auto px-6 py-24 space-y-20">
       {/* Bio / About Section */}
       <section className="flex flex-col gap-6" aria-label="About Section">
         <h1 className="font-bold tracking-tighter text-4xl font-sans">raver</h1>
@@ -107,10 +121,10 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="space-y-16">
+      <section className="space-y-8">
         <h2 className="text-sm font-sans font-medium text-zinc-500 dark:text-zinc-500">Projects</h2>
 
-        <div className="space-y-32">
+        <div className="space-y-24">
           {/* PRISM */}
           <ProjectSection 
             title="PRISM"
@@ -186,13 +200,15 @@ export default function Home() {
       {/* GitHub Calendar Section */}
       <section className="flex justify-center w-full mt-24 mb-16 overflow-x-auto">
         <div className="min-w-fit">
-          <GitHubCalendar 
-            username="Raver-Miradora" 
-            theme={githubTheme}
-            fontSize={12}
-            blockSize={12}
-            blockMargin={4}
-          />
+          {mounted && (
+            <GitHubCalendar 
+              username="Raver-Miradora" 
+              theme={githubTheme}
+              fontSize={12}
+              blockSize={12}
+              blockMargin={4}
+            />
+          )}
         </div>
       </section>
 
