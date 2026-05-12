@@ -69,6 +69,7 @@ export default function MockupCarousel({ images }: MockupCarouselProps) {
         >
           <button 
             className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors p-2"
+            title="Close lightbox"
             onClick={(e) => {
               e.stopPropagation();
               setIsLightboxOpen(false);
