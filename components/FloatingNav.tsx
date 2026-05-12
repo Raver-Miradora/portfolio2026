@@ -36,6 +36,7 @@ export default function FloatingNav() {
         <button 
           onClick={scrollToTop}
           className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-800 dark:text-gray-200 group"
+          title="Scroll to top"
         >
           <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
         </button>
@@ -46,7 +47,10 @@ export default function FloatingNav() {
         </span>
 
         {/* Right Action */}
-        <button className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-800 dark:text-gray-200">
+        <button 
+          className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-800 dark:text-gray-200"
+          title="More options"
+        >
           <MoreHorizontal size={20} />
         </button>
       </div>
