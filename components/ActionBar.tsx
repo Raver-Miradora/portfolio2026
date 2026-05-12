@@ -34,8 +34,8 @@ export default function ActionBar() {
 
   const handleMeow = () => {
     const randomMessage = MEOW_MESSAGES[Math.floor(Math.random() * MEOW_MESSAGES.length)];
-    toast.success(randomMessage, {
-      icon: <Cat size={16} className="text-indigo-400" />
+    toast(randomMessage, {
+      icon: <Cat size={16} className="text-black dark:text-white" />
     });
     
     try {
@@ -55,7 +55,7 @@ export default function ActionBar() {
   if (!mounted) return null;
 
   return (
-    <div className="flex justify-between items-center w-full mt-4 text-[13px] text-zinc-500 dark:text-gray-400 font-mono">
+    <div className="flex justify-between items-center w-full text-[13px] text-zinc-500 dark:text-gray-400 font-mono">
       {/* Left side: Social Icons */}
       <div className="flex gap-5">
         <a 
@@ -63,6 +63,7 @@ export default function ActionBar() {
           target="_blank" 
           rel="noopener noreferrer"
           className="hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+          title="GitHub Profile"
         >
           <Github size={18} />
         </a>
@@ -71,12 +72,14 @@ export default function ActionBar() {
           target="_blank" 
           rel="noopener noreferrer"
           className="hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+          title="LinkedIn Profile"
         >
           <Linkedin size={18} />
         </a>
         <a 
           href="mailto:ravemiradora@gmail.com" 
           className="hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+          title="Email Me"
         >
           <Mail size={18} />
         </a>
